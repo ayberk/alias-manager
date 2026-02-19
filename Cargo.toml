@@ -1,0 +1,34 @@
+[package]
+name = "als-manager"
+version = "0.1.0"
+edition = "2024"
+authors = ["Ayberk Yilmaz"]
+description = "A TUI for managing, auditing, and searching shell aliases across Zsh, Bash, and Fish."
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/ayberk/alias-manager"
+homepage = "https://github.com/ayberk/alias-manager"
+keywords = ["alias", "shell", "tui", "git", "cli-tool"]
+categories = ["command-line-utilities", "development-tools"]
+
+[[bin]]
+name = "alias-manager"
+path = "src/main.rs"
+
+[dependencies]
+ratatui = "0.26"      # TUI framework
+crossterm = "0.27"    # Terminal handling
+regex = "1.10"        # For parsing alias definitions
+home = "0.5"          # Cross-platform $HOME discovery
+arboard = "3.4"       # Cross-platform clipboard handling
+which = "8.0.0"       # Command existence checks
+
+[dev-dependencies]
+tempfile = "3.10"     # Temporary file utilities for unit tests
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
